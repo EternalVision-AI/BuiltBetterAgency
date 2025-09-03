@@ -1,43 +1,79 @@
 import React, { useState } from 'react';
 import { 
   Mail, 
-  Phone, 
-  MapPin, 
   Send, 
-  User, 
-  MessageSquare, 
-  Briefcase,
-  Upload,
   CheckCircle,
   Star,
-  Globe,
-  Clock
+  Video
 } from 'lucide-react';
+import { sendEmail } from '../services/emailService';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
-    phone: '',
-    role: '',
-    experience: '',
-    currentSalary: '',
-    expectedSalary: '',
-    availability: '',
-    remoteExperience: '',
+    loom: '',
+    telegram: '',
+    companies: '',
     interviewConfidence: '',
     englishAccent: '',
-    message: '',
-    resumeFile: null as File | null
+    availability: '',
+    resumeLink: ''
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
+    
+    // Validate required fields including resume
+    // if (!formData.resumeFile) {
+    //   alert('Please upload your resume before submitting.');
+    //   return;
+    // }
+    
+    try {
+      // Get user's location
+      let location = 'Not detected';
+      try {
+        const response = await fetch('https://ipapi.co/json/');
+        const data = await response.json();
+        if (data.country_name && data.city) {
+          location = `${data.country_name}, ${data.city}`;
+        } else if (data.country_name) {
+          location = data.country_name;
+        }
+      } catch (locationError) {
+        console.log('Location detection failed:', locationError);
+      }
+
+      const result = await sendEmail({
+        ...formData,
+        location
+      });
+      
+      if (result.success) {
+        console.log('Email sent successfully');
+        setIsSubmitted(true);
+        setTimeout(() => setIsSubmitted(false), 3000);
+        // Reset form after successful submission
+        setFormData({
+          email: '',
+          loom: '',
+          telegram: '',
+          companies: '',
+          interviewConfidence: '',
+          englishAccent: '',
+          availability: '',
+          resumeLink: ''
+        });
+      } else {
+        console.error('Failed to send email:', result.message);
+        alert(result.message);
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Error sending application. Please try again or contact us directly.');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -47,16 +83,16 @@ const Contact: React.FC = () => {
     });
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null;
-    setFormData({
-      ...formData,
-      resumeFile: file
-    });
-  };
+  // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = e.target.files?.[0] || null;
+  //   setFormData({
+  //     ...formData,
+  //     resumeFile: file
+  //   });
+  // };
 
   return (
-    <section id="contact" className="py-24 bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900 relative overflow-hidden">
+    <section id="apply" className="py-24 bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
@@ -67,17 +103,17 @@ const Contact: React.FC = () => {
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full font-medium mb-6">
             <Star className="h-4 w-4" />
-            <span>Get Started Today</span>
+            <span>Apply Today</span>
           </div>
-          <h2 className="text-5xl font-bold text-white mb-6">Ready to Advance Your Career?</h2>
+          <h2 className="text-5xl font-bold text-white mb-6">Ready to Unlock Your Earning Potential?</h2>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-            Join our exclusive network of elite developers and gain access to premium opportunities with top-tier compensation packages.
+            Complete our comprehensive application form and take the first step toward maximizing your income as a senior developer with premium opportunities.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-12">
+        <div className="grid gap-12">
           {/* Contact Information */}
-          <div className="space-y-8">
+          {/* <div className="space-y-8">
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
               <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
               <div className="space-y-6">
@@ -143,12 +179,33 @@ const Contact: React.FC = () => {
                 White-glove service with dedicated account management and personalized career guidance throughout the entire process.
               </p>
             </div>
-          </div>
+
+            <div className="bg-gradient-to-r from-blue-500/20 to-indigo-500/20 backdrop-blur-sm rounded-2xl p-6 border border-blue-400/30">
+              <div className="flex items-center space-x-3 mb-3">
+                <Award className="h-6 w-6 text-blue-400" />
+                <span className="text-white font-bold">Success Metrics</span>
+              </div>
+              <div className="space-y-2 text-blue-100 text-sm">
+                <div className="flex justify-between">
+                  <span>Average Income Increase</span>
+                  <span className="font-semibold">167%</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Success Rate</span>
+                  <span className="font-semibold">98%</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Time to First Placement</span>
+                  <span className="font-semibold">2-4 weeks</span>
+                </div>
+              </div>
+            </div>
+          </div> */}
           
           {/* Application Form */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-3xl p-10 shadow-2xl">
-              <h3 className="text-3xl font-bold text-slate-800 mb-8">Developer Application Form</h3>
+              <h3 className="text-3xl font-bold text-slate-800 mb-8">Senior Developer Application</h3>
               
               {isSubmitted ? (
                 <div className="text-center py-12">
@@ -160,25 +217,6 @@ const Contact: React.FC = () => {
                 <form onSubmit={handleSubmit} className="space-y-8">
                   {/* Personal Information */}
                   <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-semibold text-slate-700 mb-3">
-                        Full Name *
-                      </label>
-                      <div className="relative">
-                        <User className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleChange}
-                          className="w-full pl-12 pr-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-lg"
-                          placeholder="Your full name"
-                          required
-                        />
-                      </div>
-                    </div>
-                    
                     <div>
                       <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mb-3">
                         Email Address *
@@ -192,118 +230,91 @@ const Contact: React.FC = () => {
                           value={formData.email}
                           onChange={handleChange}
                           className="w-full pl-12 pr-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-lg"
-                          placeholder="your@email.com"
+                          placeholder="tony.builtbetter@gmail.com"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label htmlFor="telegram" className="block text-sm font-semibold text-slate-700 mb-3">
+                        Telegram ID
+                      </label>
+                      <div className="relative">
+                        <Send className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
+                        <input
+                          type="text"
+                          id="telegram"
+                          name="telegram"
+                          value={formData.telegram}
+                          onChange={handleChange}
+                          className="w-full pl-12 pr-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-lg"
+                          placeholder="@builtbetter"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="loom" className="block text-sm font-semibold text-slate-700 mb-3">
+                        Loom Video Link *
+                      </label>
+                      <div className="relative">
+                        <Video className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
+                        <input
+                          type="text"
+                          id="loom"
+                          name="loom"
+                          value={formData.loom}
+                          onChange={handleChange}
+                          className="w-full pl-12 pr-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-lg"
+                          placeholder="https://www.loom.com/share/[ID]"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label htmlFor="loom" className="block text-sm font-semibold text-slate-700 mb-3">
+                        Resume/CV Share Link *
+                      </label>
+                      <div className="relative">
+                        <Video className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
+                        <input
+                          type="text"
+                          id="resumeLink"
+                          name="resumeLink"
+                          value={formData.resumeLink}
+                          onChange={handleChange}
+                          className="w-full pl-12 pr-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-lg"
+                          placeholder="https://www.loom.com/share/[ID]"
                           required
                         />
                       </div>
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-semibold text-slate-700 mb-3">
-                        Phone Number
-                      </label>
-                      <div className="relative">
-                        <Phone className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
-                        <input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="w-full pl-12 pr-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-lg"
-                          placeholder="+1 (555) 123-4567"
-                        />
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="experience" className="block text-sm font-semibold text-slate-700 mb-3">
-                        Years of Experience *
-                      </label>
-                      <select
-                        id="experience"
-                        name="experience"
-                        value={formData.experience}
-                        onChange={handleChange}
-                        className="w-full px-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-lg"
-                        required
-                      >
-                        <option value="">Select experience level</option>
-                        <option value="3-5">3-5 years</option>
-                        <option value="5-8">5-8 years</option>
-                        <option value="8-12">8-12 years</option>
-                        <option value="12+">12+ years</option>
-                      </select>
-                    </div>
-                  </div>
 
-                  {/* Salary Information */}
+                  {/* Communication & Confidence */}
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="currentSalary" className="block text-sm font-semibold text-slate-700 mb-3">
-                        Current Salary Range
+                      <label htmlFor="companies" className="block text-sm font-semibold text-slate-700 mb-3">
+                        Remote Companies Worked With *
                       </label>
                       <select
-                        id="currentSalary"
-                        name="currentSalary"
-                        value={formData.currentSalary}
-                        onChange={handleChange}
-                        className="w-full px-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-lg"
-                      >
-                        <option value="">Select current range</option>
-                        <option value="60k-80k">$60k - $80k</option>
-                        <option value="80k-100k">$80k - $100k</option>
-                        <option value="100k-120k">$100k - $120k</option>
-                        <option value="120k-150k">$120k - $150k</option>
-                        <option value="150k+">$150k+</option>
-                      </select>
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="expectedSalary" className="block text-sm font-semibold text-slate-700 mb-3">
-                        Expected Salary Range *
-                      </label>
-                      <select
-                        id="expectedSalary"
-                        name="expectedSalary"
-                        value={formData.expectedSalary}
+                        id="companies"
+                        name="companies"
+                        value={formData.companies}
                         onChange={handleChange}
                         className="w-full px-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-lg"
                         required
                       >
-                        <option value="">Select expected range</option>
-                        <option value="100k-120k">$100k - $120k</option>
-                        <option value="120k-150k">$120k - $150k</option>
-                        <option value="150k-180k">$150k - $180k</option>
-                        <option value="180k+">$180k+</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  {/* Remote Work Experience */}
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="remoteExperience" className="block text-sm font-semibold text-slate-700 mb-3">
-                        Remote Work Experience *
-                      </label>
-                      <select
-                        id="remoteExperience"
-                        name="remoteExperience"
-                        value={formData.remoteExperience}
-                        onChange={handleChange}
-                        className="w-full px-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-lg"
-                        required
-                      >
-                        <option value="">Select remote experience</option>
-                        <option value="0">No remote experience</option>
+                        <option value="">Select number of companies</option>
                         <option value="1-2">1-2 companies</option>
                         <option value="3-5">3-5 companies</option>
-                        <option value="5+">5+ companies</option>
+                        <option value="6-10">6-10 companies</option>
+                        <option value="10+">10+ companies</option>
                       </select>
                     </div>
-                    
                     <div>
                       <label htmlFor="interviewConfidence" className="block text-sm font-semibold text-slate-700 mb-3">
                         Interview Confidence Level *
@@ -317,10 +328,10 @@ const Contact: React.FC = () => {
                         required
                       >
                         <option value="">Select confidence level</option>
-                        <option value="beginner">Beginner - Need significant support</option>
-                        <option value="intermediate">Intermediate - Some experience</option>
-                        <option value="confident">Confident - Comfortable with most interviews</option>
-                        <option value="expert">Expert - Highly confident in all scenarios</option>
+                        <option value="very-confident">Very Confident - I excel in all interview stages</option>
+                        <option value="confident">Confident - I handle most interview situations well</option>
+                        <option value="somewhat">Somewhat Confident - I need some preparation</option>
+                        <option value="need-help">I could use guidance and practice</option>
                       </select>
                     </div>
                   </div>
@@ -346,7 +357,6 @@ const Contact: React.FC = () => {
                         <option value="other">Other</option>
                       </select>
                     </div>
-                    
                     <div>
                       <label htmlFor="availability" className="block text-sm font-semibold text-slate-700 mb-3">
                         Availability *
@@ -369,7 +379,7 @@ const Contact: React.FC = () => {
                   </div>
 
                   {/* Resume Upload */}
-                  <div>
+                  {/* <div>
                     <label htmlFor="resume" className="block text-sm font-semibold text-slate-700 mb-3">
                       Resume/CV Upload *
                     </label>
@@ -385,7 +395,6 @@ const Contact: React.FC = () => {
                         onChange={handleFileChange}
                         accept=".pdf,.doc,.docx"
                         className="hidden"
-                        required
                       />
                       <label htmlFor="resume" className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium cursor-pointer hover:bg-indigo-700 transition-colors inline-block">
                         Choose File
@@ -395,27 +404,13 @@ const Contact: React.FC = () => {
                           ✓ {formData.resumeFile.name}
                         </div>
                       )}
+                      {!formData.resumeFile && (
+                        <div className="mt-3 text-red-500 text-sm">
+                          Resume is required
+                        </div>
+                      )}
                     </div>
-                  </div>
-                  
-                  {/* Message */}
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-semibold text-slate-700 mb-3">
-                      Additional Information
-                    </label>
-                    <div className="relative">
-                      <MessageSquare className="absolute left-4 top-4 h-5 w-5 text-slate-400" />
-                      <textarea
-                        id="message"
-                        name="message"
-                        rows={6}
-                        value={formData.message}
-                        onChange={handleChange}
-                        className="w-full pl-12 pr-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all resize-none text-lg"
-                        placeholder="Tell us about your technical expertise, key projects, career goals, or any specific requirements you have for your next role..."
-                      ></textarea>
-                    </div>
-                  </div>
+                  </div> */}
                   
                   <button
                     type="submit"

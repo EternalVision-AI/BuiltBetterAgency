@@ -16,34 +16,33 @@ const Hero: React.FC = () => {
           <div className="space-y-8">
             <div className="inline-flex items-center space-x-3 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
               <Award className="h-5 w-5 text-yellow-400" />
-              <span className="text-white font-medium">Premium Recruitment Excellence</span>
-              <div className="flex space-x-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
-                ))}
-              </div>
+              <span className="text-white font-medium">Exceptional developers deserve exceptional opportunities</span>
             </div>
             
             <h1 className="text-6xl lg:text-7xl font-bold text-white leading-tight">
-              Elite Developer
+                Unlock  
               <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-teal-400 bg-clip-text text-transparent block">
-                Recruitment
+                Your True Earning
               </span>
-              <span className="text-4xl lg:text-5xl text-blue-200">Agency</span>
-            </h1>
+              <span className="text-4xl lg:text-5xl bg-gradient-to-r from-purple-400 via-green-400 to-red-400 bg-clip-text text-transparent block">Potential</span>
+              </h1>
             
             <p className="text-xl text-blue-100 leading-relaxed max-w-2xl">
-              We connect exceptional JavaScript and TypeScript developers with premium remote opportunities at leading technology companies. Maximize your earning potential with our exclusive placement network.
+            Work with BuiltBetter Agency and discover exclusive opportunities for experienced developers to maximize their income through strategic remote positions.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="group bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-10 py-5 rounded-xl font-semibold text-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 flex items-center justify-center space-x-3">
+              {/* <button className="group bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-10 py-5 rounded-xl font-semibold text-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 flex items-center justify-center space-x-3">
                 <span>Explore Opportunities</span>
                 <ArrowRight className="h-6 w-6 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="border-2 border-white/30 text-white px-10 py-5 rounded-xl font-semibold text-lg hover:bg-white/10 hover:border-white/50 transition-all duration-300 backdrop-blur-sm">
+              </button> */}
+              <a href='#apply' className="group bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-10 py-5 rounded-xl font-semibold text-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 flex items-center justify-center space-x-3">
+                <span>Explore Opportunities</span>
+                <ArrowRight className="h-6 w-6 group-hover:translate-x-1 transition-transform" />
+              </a>
+              {/* <button className="border-2 border-white/30 text-white px-10 py-5 rounded-xl font-semibold text-lg hover:bg-white/10 hover:border-white/50 transition-all duration-300 backdrop-blur-sm">
                 Partner With Us
-              </button>
+              </button> */}
             </div>
             
             <div className="grid grid-cols-3 gap-8 pt-8">
@@ -51,14 +50,14 @@ const Hero: React.FC = () => {
                 <div className="flex justify-center mb-2">
                   <Users className="h-8 w-8 text-blue-400" />
                 </div>
-                <div className="text-3xl font-bold text-white">1,200+</div>
+                <div className="text-3xl font-bold text-white">150+</div>
                 <div className="text-blue-200 text-sm">Successful Placements</div>
               </div>
               <div className="text-center">
                 <div className="flex justify-center mb-2">
                   <Globe className="h-8 w-8 text-purple-400" />
                 </div>
-                <div className="text-3xl font-bold text-white">150+</div>
+                <div className="text-3xl font-bold text-white">30+</div>
                 <div className="text-blue-200 text-sm">Partner Companies</div>
               </div>
               <div className="text-center">
@@ -79,9 +78,9 @@ const Hero: React.FC = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
                       <img 
-                        src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&dpr=1&fit=crop&crop=face"
+                        src="/images/tony(1).png"
                         alt="Tony Lim"
-                        className="w-16 h-16 rounded-full object-cover border-4 border-indigo-100"
+                        className="w-36 h-36 rounded-full object-cover border-4 border-indigo-100"
                       />
                       <div>
                         <div className="font-bold text-slate-800 text-lg">Tony Lim</div>
@@ -94,8 +93,8 @@ const Hero: React.FC = () => {
                   
                   <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-4">
                     <div className="text-sm text-slate-600 mb-2">Current Opportunity</div>
-                    <div className="font-bold text-slate-800">Senior Full-Stack Developer</div>
-                    <div className="text-indigo-600 font-medium">JavaScript/TypeScript Focus</div>
+                    <div className="font-bold text-slate-800">Senior Full Stack Developer</div>
+                    <div className="text-indigo-600 font-medium">Javascript/Typescript Focus</div>
                   </div>
                   
                   <div className="space-y-3">
@@ -109,7 +108,7 @@ const Hero: React.FC = () => {
                     </div>
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-slate-600">Experience</span>
-                      <span className="font-bold text-purple-600">5+ Years</span>
+                      <span className="font-bold text-purple-600">8+ Years</span>
                     </div>
                   </div>
                   
@@ -122,16 +121,16 @@ const Hero: React.FC = () => {
               </div>
               
               {/* Floating Elements */}
-              <div className="absolute -top-6 -left-6 bg-gradient-to-r from-green-400 to-emerald-500 rounded-2xl p-4 shadow-xl transform -rotate-12 hover:rotate-0 transition-transform duration-300">
+              <div className="absolute -top-12 -left-12 bg-gradient-to-r from-green-400 to-emerald-500 rounded-2xl p-4 shadow-xl transform -rotate-12 hover:rotate-0 transition-transform duration-300">
                 <div className="text-white text-center">
                   <div className="text-xl font-bold">$150k+</div>
                   <div className="text-xs">Avg Salary</div>
                 </div>
               </div>
               
-              <div className="absolute -bottom-4 -right-4 bg-gradient-to-r from-orange-400 to-red-500 rounded-2xl p-4 shadow-xl transform rotate-12 hover:rotate-0 transition-transform duration-300">
+              <div className="absolute -bottom-12 -right-12 bg-gradient-to-r from-orange-400 to-red-500 rounded-2xl p-4 shadow-xl transform rotate-12 hover:rotate-0 transition-transform duration-300">
                 <div className="text-white text-center">
-                  <div className="text-xl font-bold">7 Days</div>
+                  <div className="text-xl font-bold">4 Weeks</div>
                   <div className="text-xs">Avg Placement</div>
                 </div>
               </div>

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { 
   Code, 
   DollarSign, 
-  MapPin, 
   Clock, 
   Users, 
   CheckCircle, 
@@ -18,7 +17,7 @@ const OpportunityDetails: React.FC = () => {
   const [activeTab, setActiveTab] = useState('overview');
 
   const requirements = [
-    "5+ years of professional JavaScript/TypeScript development experience",
+    "5+ years of professional software development experience",
     "Expert-level proficiency in React, Node.js, and modern frameworks",
     "Strong experience with cloud platforms (AWS, Azure, or GCP)",
     "Proven track record in remote team collaboration and communication",
@@ -40,7 +39,7 @@ const OpportunityDetails: React.FC = () => {
   ];
 
   const techStack = [
-    { name: "JavaScript/TypeScript", level: "Expert", color: "bg-yellow-100 text-yellow-800" },
+    { name: "software", level: "Expert", color: "bg-yellow-100 text-yellow-800" },
     { name: "React/Next.js", level: "Advanced", color: "bg-blue-100 text-blue-800" },
     { name: "Node.js/Express", level: "Expert", color: "bg-green-100 text-green-800" },
     { name: "PostgreSQL/MongoDB", level: "Proficient", color: "bg-purple-100 text-purple-800" },
@@ -90,7 +89,7 @@ const OpportunityDetails: React.FC = () => {
               <span>Featured Opportunity</span>
             </div>
             <h2 className="text-5xl font-bold text-slate-800 mb-6">Senior Full-Stack Developer</h2>
-            <p className="text-2xl text-slate-600 mb-8">JavaScript/TypeScript Specialization</p>
+            <p className="text-2xl text-slate-600 mb-8">software Specialization</p>
             
             <div className="flex flex-wrap justify-center gap-6 text-lg">
               <div className="flex items-center space-x-2 bg-green-50 px-4 py-2 rounded-full">
