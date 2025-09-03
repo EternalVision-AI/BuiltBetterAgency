@@ -10,7 +10,7 @@ const Testimonials: React.FC = () => {
       avatar: "https://media.licdn.com/dms/image/v2/D4E35AQEGrDGa8Kdqmg/profile-framedphoto-shrink_200_200/profile-framedphoto-shrink_200_200/0/1732529652489?e=1757368800&v=beta&t=sFG7JgGCxo-11jOLnYWh-V222GtI69LDJiITC1E2lDE",
       content: "BuiltBetter Agency transformed my career trajectory. Within 25 days, I was interviewing with eight Fortune 500 companies and landed a role with 40% salary increase. Their technical screening process is thorough yet respectful, and Tony's guidance throughout the interview process was invaluable.",
       rating: 5,
-      salary: "$165k",
+      salary: "$65k",
       placement: "25 days",
       category: "developer"
     },
@@ -21,7 +21,7 @@ const Testimonials: React.FC = () => {
       avatar: "https://media.licdn.com/dms/image/v2/D4D03AQH2M4o8Zj0IXw/profile-displayphoto-scale_200_200/B4DZetyINrHMAY-/0/1750967289372?e=1759363200&v=beta&t=sBhXaL8zjFx1BGNZwCppkOHtveCoMTkN5Jm9PpjcyiQ",
       content: "I was skeptical about recruitment agencies until I worked with BuiltBetter. They understood my technical preferences, career goals, and even helped me prepare for system design interviews. The result? My dream job at a leading fintech company.",
       rating: 5,
-      salary: "$155k",
+      salary: "$60k",
       placement: "22 days",
       category: "developer"
     },
@@ -32,7 +32,7 @@ const Testimonials: React.FC = () => {
       avatar: "https://media.licdn.com/dms/image/v2/D4D35AQEadF_LW2yIpw/profile-framedphoto-shrink_400_400/B4DZg95GOsHsAg-/0/1753385035099?e=1757368800&v=beta&t=x1OdGyqJngEQKh4BGSlDr7u5p33x2UkDCBF8S5cZHYY",
       content: "The level of professionalism and technical understanding at BuiltBetter is unmatched. They helped me transition from a traditional company to a cutting-edge startup, negotiating not just salary but also equity and remote work arrangements that perfectly fit my lifestyle.",
       rating: 5,
-      salary: "$180k + equity",
+      salary: "$55k + equity",
       placement: "27 days",
       category: "developer"
     },

@@ -4,7 +4,8 @@ import {
   Send, 
   CheckCircle,
   Star,
-  Video
+  Video,
+  Share
 } from 'lucide-react';
 import { sendEmail } from '../services/emailService';
 
@@ -278,7 +279,7 @@ const Contact: React.FC = () => {
                         Resume/CV Share Link *
                       </label>
                       <div className="relative">
-                        <Video className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
+                        <Share className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
                         <input
                           type="text"
                           id="resumeLink"
@@ -286,7 +287,7 @@ const Contact: React.FC = () => {
                           value={formData.resumeLink}
                           onChange={handleChange}
                           className="w-full pl-12 pr-4 py-4 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-lg"
-                          placeholder="https://www.loom.com/share/[ID]"
+                          placeholder="https://www.example.com"
                           required
                         />
                       </div>
