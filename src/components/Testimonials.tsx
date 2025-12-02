@@ -32,7 +32,7 @@ const Testimonials: React.FC = () => {
       avatar: "https://media.licdn.com/dms/image/v2/D4D35AQEadF_LW2yIpw/profile-framedphoto-shrink_400_400/B4DZg95GOsHsAg-/0/1753385035099?e=1757368800&v=beta&t=x1OdGyqJngEQKh4BGSlDr7u5p33x2UkDCBF8S5cZHYY",
       content: "The level of professionalism and technical understanding at BuiltBetter is unmatched. They helped me transition from a traditional company to a cutting-edge startup, negotiating not just salary but also equity and remote work arrangements that perfectly fit my lifestyle.",
       rating: 5,
-      salary: "$55k + equity",
+      salary: "$50k + equity",
       placement: "27 days",
       category: "developer"
     },
@@ -77,7 +77,7 @@ const Testimonials: React.FC = () => {
                     <div>
                       <h4 className="font-bold text-slate-800 text-lg">{testimonial.name}</h4>
                       <p className="text-indigo-600 font-medium">{testimonial.role}</p>
-                      <a 
+                      {/* <a 
                         href={testimonial.linkedin} 
                         target="_blank" 
                         rel="noopener noreferrer"
@@ -85,7 +85,7 @@ const Testimonials: React.FC = () => {
                       >
                         <Linkedin className="h-4 w-4 mr-1" />
                         View LinkedIn Profile
-                      </a>
+                      </a> */}
                     </div>
                   </div>
                   

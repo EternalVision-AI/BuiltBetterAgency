@@ -83,24 +83,30 @@ const Hero: React.FC = () => {
                         className="w-36 h-36 rounded-full object-cover border-4 border-indigo-100"
                       />
                       <div>
-                        <div className="font-bold text-slate-800 text-lg">Tony Lim</div>
-                        <div className="text-indigo-600 font-medium">Director</div>
-                        <div className="text-slate-500 text-sm">BuiltBetter Agency</div>
+                        <div className="font-bold text-slate-800 text-3xl">Tony Lim</div>
+                        <div className="text-indigo-800 font-medium text-lg">Director</div>
+                        <div className="text-slate-500 text-lg">BuiltBetter Agency</div>
                       </div>
                     </div>
                     <Shield className="h-8 w-8 text-green-500" />
                   </div>
                   
                   <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-4">
-                    <div className="text-sm text-slate-600 mb-2">Current Opportunity</div>
-                    <div className="font-bold text-slate-800">Senior Full Stack Developer</div>
-                    <div className="text-indigo-600 font-medium">Javascript/Typescript Focus</div>
+                    <div className="text-lg text-slate-800 mb-2 font-bold">Current Opportunities</div>
+                    <div className="text-slate-600">Senior Cloud Architect</div>
+                    <div className="text-slate-600">Senior AI/ML Engineer</div>
+                    <div className="text-slate-600">Senior Data Scientist</div>
+                    <div className="text-slate-600">Senior Devops Engineer</div>
+                    <div className="text-slate-600">Senior Frontend Developer</div>
+                    <div className="text-slate-600">Senior Backend Developer</div>
+                    <div className="text-slate-600">Senior Full Stack Developer</div>
+                    <div className="text-slate-600">...</div>
                   </div>
                   
-                  <div className="space-y-3">
+                  {/* <div className="space-y-3">
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-slate-600">Salary Range</span>
-                      <span className="font-bold text-green-600">$120k - $180k</span>
+                      <span className="font-bold text-green-600">$60k - $80k</span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-slate-600">Remote</span>
@@ -116,14 +122,14 @@ const Hero: React.FC = () => {
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="h-5 w-5 fill-current" />
                     ))}
-                  </div>
+                  </div> */}
                 </div>
               </div>
               
               {/* Floating Elements */}
               <div className="absolute -top-12 -left-12 bg-gradient-to-r from-green-400 to-emerald-500 rounded-2xl p-4 shadow-xl transform -rotate-12 hover:rotate-0 transition-transform duration-300">
                 <div className="text-white text-center">
-                  <div className="text-xl font-bold">$150k+</div>
+                  <div className="text-xl font-bold">$60k+</div>
                   <div className="text-xs">Avg Salary</div>
                 </div>
               </div>
